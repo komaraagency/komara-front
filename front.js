@@ -117,7 +117,7 @@
     canvas.height = Math.round(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     echelle = L / W;
-    etat.terrainY = (H / echelle) * 0.72;
+    etat.terrainY = (H / echelle) * 0.70;
     cielCle = "";
   }
   window.addEventListener("resize", redimensionner);
@@ -426,6 +426,7 @@
     if (etat.shake > 0.4) {
       ctx.translate(rnd(-etat.shake, etat.shake), rnd(-etat.shake, etat.shake));
     }
+    ctx.scale(s, s);
 
     // ciel
     ctx.fillStyle = ciel || "#26303f";
@@ -623,7 +624,7 @@
     const m = UNITES[u.cle];
     const y = etat.terrainY;
     const joueur = u.camp === "joueur";
-    const t = m.taille * 2.3;
+    const t = m.taille * 3.2;
     const marche = Math.sin(u.phase) * 2.5;
     const x = u.x - (joueur ? 1 : -1) * u.recul;
 

@@ -850,6 +850,7 @@
     el.pvE.style.width = (etat.pvEnnemiMax ? (etat.pvEnnemi / etat.pvEnnemiMax) * 100 : 0) + "%";
     if (el.tpvJ) el.tpvJ.textContent = Math.max(0, Math.round(etat.pvJoueur));
     if (el.tpvE) el.tpvE.textContent = Math.max(0, Math.round(etat.pvEnnemi));
+    if (el.elim) el.elim.textContent = etat.tuees + (etat.tuees > 1 ? " éliminés" : " éliminé");
 
     ORDRE.forEach((cle) => {
       const b = cartesEls[cle];

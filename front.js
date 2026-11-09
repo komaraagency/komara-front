@@ -117,7 +117,7 @@
     canvas.height = Math.round(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     echelle = L / W;
-    etat.terrainY = (H / echelle) * 0.8;
+    etat.terrainY = (H / echelle) * 0.72;
     cielCle = "";
   }
   window.addEventListener("resize", redimensionner);
@@ -473,8 +473,8 @@
 
   function dessinerMontagnes(sol) {
     const couches = [
-      { h: 190, c: "rgba(28,38,52,0.55)", dec: 0.32 },
-      { h: 130, c: "rgba(40,52,62,0.7)", dec: 0.55 },
+      { h: 150, c: "rgba(46,58,74,0.62)", dec: 0.32 },
+      { h: 96, c: "rgba(62,74,80,0.8)", dec: 0.55 },
     ];
     couches.forEach((co, idx) => {
       ctx.fillStyle = co.c;
@@ -510,18 +510,20 @@
     const y = etat.terrainY;
     const g = ctx.createLinearGradient(0, y, 0, y + 260);
     if (mission.decor === "montagne") {
-      g.addColorStop(0, "#6b5236"); g.addColorStop(1, "#2a1f14");
+      g.addColorStop(0, "#9a7a4e"); g.addColorStop(1, "#3d2c1a");
     } else if (mission.decor === "savane") {
-      g.addColorStop(0, "#8a6a34"); g.addColorStop(1, "#33240f");
+      g.addColorStop(0, "#b08a45"); g.addColorStop(1, "#4a3316");
     } else {
-      g.addColorStop(0, "#7a6440"); g.addColorStop(1, "#2b2013");
+      g.addColorStop(0, "#a58a5c"); g.addColorStop(1, "#43301b");
     }
     ctx.fillStyle = g;
     ctx.fillRect(0, y, W, 300);
 
     // ligne d'horizon
-    ctx.fillStyle = "rgba(0,0,0,0.28)";
-    ctx.fillRect(0, y - 3, W, 6);
+    ctx.fillStyle = "rgba(20,12,4,0.45)";
+    ctx.fillRect(0, y - 4, W, 7);
+    ctx.fillStyle = "rgba(255,225,170,0.16)";
+    ctx.fillRect(0, y - 8, W, 3);
 
     // tranchées de sable
     const sacs = 26;
@@ -621,7 +623,7 @@
     const m = UNITES[u.cle];
     const y = etat.terrainY;
     const joueur = u.camp === "joueur";
-    const t = m.taille * 1.5;
+    const t = m.taille * 2.3;
     const marche = Math.sin(u.phase) * 2.5;
     const x = u.x - (joueur ? 1 : -1) * u.recul;
 

@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Komara Front — interface
+   Tricolore guinéen, cartes sombres, or. Pensé paysage mobile.
+   ========================================================================== */
+:root {
+  --rouge: #d11231;
+  --jaune: #f5cf1b;
+  --vert: #009a44;
+  --noir: #08080a;
+  --or: #ffd700;
+  --carte: #101014;
+  --carte-2: #17171d;
+  --bord: rgba(255, 255, 255, 0.13);
+  --texte: #f5f3ec;
+  --doux: #a9a6a0;
+  --u: clamp(12px, min(3.1vw, 4.3vh), 20px);
+  --marge: clamp(8px, 2.4vw, 18px);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { font-size: var(--u); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  height: 100dvh;
+  background: var(--noir);
+  color: var(--texte);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#tricolore {
+  position: fixed; inset: 0; display: grid; grid-template-columns: 1fr 1fr 1fr;
+  z-index: 0; pointer-events: none;
+}
+#tricolore i:nth-child(1) { background: linear-gradient(180deg, #d11231, #7d0a1e); }
+#tricolore i:nth-child(2) { background: linear-gradient(180deg, #f5cf1b, #a88f08); }
+#tricolore i:nth-child(3) { background: linear-gradient(180deg, #009a44, #00602b); }
+
+.drap-gn {
+  display: inline-block; width: 1.25em; height: 0.85em;
+  vertical-align: -0.08em; border-radius: 2px;
+  background: linear-gradient(90deg, #ce1126 0 33.34%, #fcd116 33.34% 66.67%, #009460 66.67% 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.ecran { position: fixed; inset: 0; z-index: 1; display: none; }
+.ecran.actif { display: block; }
+
+/* ------------------------------ accueil -------------------------------- */
+#accueil {
+  overflow-y: auto;
+  background: rgba(4, 4, 6, 0.74);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: calc(var(--marge) + env(safe-area-inset-top)) var(--marge) calc(var(--marge) + env(safe-area-inset-bottom));
+}
+
+.carte {
+  width: 100%;
+  max-width: 52rem;
+  margin: auto;
+  background: linear-gradient(170deg, var(--carte-2), var(--carte));
+  border: 1px solid var(--bord);
+  border-radius: 20px;
+  padding: 1rem 1.1rem 0.9rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.entete-accueil { display: flex; align-items: center; gap: 0.8rem; }
+.logo { width: 4.4rem; height: 4.4rem; border-radius: 50%; flex: 0 0 auto; }
+.sur-titre {
+  margin: 0 0 0.15rem; font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--or); font-weight: 800;
+}
+.carte h1 {
+  margin: 0; font-size: clamp(1.9rem, 7vh, 2.8rem); line-height: 0.92;
+  font-weight: 900; letter-spacing: -0.02em;
+  background: linear-gradient(100deg, #fff 15%, var(--or) 60%, #ffe98a);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.carte h1 span { color: var(--rouge); -webkit-text-fill-color: var(--rouge); }
+
+.baseline {
+  margin: 0.7rem 0 0.9rem; font-size: 0.82rem; line-height: 1.45;
+  color: var(--doux); max-width: 42rem;
+}
+
+.btn-principal {
+  width: 100%; border: 0; border-radius: 13px; padding: 0.85rem;
+  font-size: 0.98rem; font-weight: 900; letter-spacing: 0.03em;
+  color: #14100a; background: linear-gradient(180deg, #ffe335, var(--or));
+  box-shadow: 0 6px 0 #8a6d00, 0 12px 22px rgba(0, 0, 0, 0.42);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.btn-principal:active { transform: translateY(3px); box-shadow: 0 3px 0 #8a6d00; }
+
+.btn-secondaire {
+  width: 100%; margin-top: 0.45rem; border: 1px solid var(--bord);
+  background: rgba(255, 255, 255, 0.06); color: var(--texte);
+  border-radius: 11px; padding: 0.7rem; font-size: 0.86rem; font-weight: 700;
+}
+
+/* missions */
+.campagne { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.45rem; margin-bottom: 0.85rem; }
+.mission {
+  text-align: left; padding: 0.55rem 0.6rem; border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045); border: 1px solid var(--bord);
+}
+.mission b { display: block; font-size: 0.84rem; }
+.mission em { font-style: normal; font-size: 0.66rem; color: var(--doux); display: block; margin-top: 0.1rem; }
+.mission .etoiles { color: var(--or); font-size: 0.7rem; letter-spacing: 0.1em; }
+.mission.faite { border-color: rgba(0, 154, 68, 0.6); background: rgba(0, 154, 68, 0.12); }
+.mission.verrou { opacity: 0.4; }
+
+.astuce { font-size: 0.7rem; color: var(--doux); line-height: 1.45; margin: 0.65rem 0 0.2rem; }
+
+/* -------------------------------- jeu ---------------------------------- */
+#jeu { background: #10161c; overflow: hidden; }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+#haut {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 0.4rem);
+  left: 0.6rem; right: 0.6rem;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem;
+  z-index: 5; pointer-events: none;
+}
+.bloc-base { width: 26%; max-width: 11rem; }
+.bloc-base.droite { text-align: right; }
+.qui {
+  font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--doux); font-weight: 800;
+}
+.pv {
+  height: 0.5rem; border-radius: 99px; margin-top: 0.18rem;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+.pv i {
+  display: block; height: 100%; width: 100%;
+  background: linear-gradient(90deg, #009a44, #56e08a);
+  transition: width 0.25s;
+}
+.pv.ennemi i { background: linear-gradient(90deg, #d11231, #ff7a6a); float: right; }
+
+.centre-haut { text-align: center; flex: 1; }
+.mission-nom {
+  margin: 0; font-size: 0.8rem; font-weight: 900; color: var(--or);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.objectif-mini { margin: 0.1rem 0 0; font-size: 0.6rem; color: var(--doux); }
+
+#credits {
+  position: absolute;
+  left: 0.6rem;
+  top: calc(env(safe-area-inset-top) + 2.6rem);
+  display: flex; align-items: center; gap: 0.35rem;
+  background: rgba(6, 8, 10, 0.8);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  padding: 0.25rem 0.5rem 0.3rem;
+  z-index: 5;
+  min-width: 7.4rem;
+}
+#credits .symbole { font-size: 0.85rem; }
+#credits b { font-size: 0.86rem; color: var(--or); font-variant-numeric: tabular-nums; }
+.jauge-credits {
+  position: absolute; left: 0.5rem; right: 0.5rem; bottom: 0.12rem;
+  height: 0.16rem; border-radius: 99px; background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+.jauge-credits i { display: block; height: 100%; width: 0%; background: var(--or); border-radius: 99px; }
+
+.boutons-haut {
+  position: absolute;
+  right: 0.6rem;
+  top: calc(env(safe-area-inset-top) + 2.4rem);
+  display: flex; gap: 0.35rem; z-index: 6;
+}
+.btn-rond {
+  width: 2.2rem; height: 2.2rem; border-radius: 50%;
+  border: 1px solid var(--bord); background: rgba(6, 8, 10, 0.78);
+  color: #fff; font-size: 0.95rem; display: grid; place-items: center;
+}
+.btn-rond:active { transform: scale(0.94); }
+
+/* annonce centrale */
+#annonce {
+  position: absolute; left: 50%; top: 38%;
+  transform: translate(-50%, -50%);
+  padding: 0.55rem 1.1rem; border-radius: 12px;
+  background: rgba(6, 8, 10, 0.9);
+  border: 1.5px solid var(--or);
+  color: #fff; font-weight: 900; font-size: 0.9rem;
+  z-index: 8; pointer-events: none;
+  transition: opacity 0.25s;
+  text-align: center;
+}
+.cache { opacity: 0 !important; pointer-events: none !important; }
+
+/* dock des cartes */
+#dock {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 0.35rem 0.45rem calc(0.4rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(4, 6, 8, 0) 0%, rgba(4, 6, 8, 0.92) 42%);
+  z-index: 6;
+}
+.cartes {
+  display: flex; gap: 0.3rem;
+  justify-content: center;
+  align-items: flex-end;
+}
+.carte-unite {
+  position: relative;
+  width: 3.9rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(180deg, #1d232c, #12161c);
+  padding: 0.28rem 0.15rem 0.22rem;
+  text-align: center;
+  transition: transform 0.08s, border-color 0.15s, opacity 0.15s;
+  flex: 0 0 auto;
+}
+.carte-unite .ico { font-size: 1.15rem; line-height: 1; display: block; }
+.carte-unite .nom { display: block; font-size: 0.54rem; font-weight: 800; margin-top: 0.12rem; line-height: 1.1; }
+.carte-unite .cout {
+  display: block; font-size: 0.56rem; color: var(--or); font-weight: 900; margin-top: 0.08rem;
+}
+.carte-unite:active { transform: translateY(2px) scale(0.97); }
+.carte-unite.verrou { opacity: 0.32; filter: grayscale(1); }
+.carte-unite.pauvre { opacity: 0.45; }
+.carte-unite.pret { border-color: rgba(255, 215, 0, 0.65); box-shadow: 0 0 12px rgba(255, 215, 0, 0.18); }
+
+/* voiles */
+.voile {
+  position: absolute; inset: 0; z-index: 20;
+  display: grid; place-items: center;
+  padding: var(--marge);
+  background: rgba(3, 4, 6, 0.84);
+  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+  transition: opacity 0.2s;
+}
+.panneau {
+  width: 100%; max-width: 26rem; max-height: 92vh; overflow-y: auto;
+  background: linear-gradient(170deg, var(--carte-2), var(--carte));
+  border: 1px solid var(--bord); border-radius: 18px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+  text-align: center;
+}
+.panneau h2 { margin: 0.1rem 0 0.5rem; font-size: 1.6rem; font-weight: 900; }
+.etiquette {
+  margin: 0; font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--or); font-weight: 800;
+}
+.fin-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem;
+  margin: 0.7rem 0 0.8rem;
+}
+.fin-stats div {
+  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--bord);
+  border-radius: 10px; padding: 0.4rem 0.25rem;
+}
+.fin-stats b { display: block; font-size: 0.92rem; color: var(--or); }
+.fin-stats span { font-size: 0.56rem; color: var(--doux); text-transform: uppercase; }
+#fin-texte { font-size: 0.82rem; color: var(--doux); line-height: 1.45; margin: 0 0 0.3rem; }
+
+/* rotation */
+#rotation {
+  position: fixed; inset: 0; z-index: 300; display: none;
+  place-items: center; padding: 1rem; background: #06070a; text-align: center;
+}
+#rotation.actif { display: grid; }
+.rot-ico { font-size: 3rem; display: block; animation: pivoter 2.2s ease-in-out infinite; }
+@keyframes pivoter { 0%, 35% { transform: rotate(0); } 60%, 100% { transform: rotate(90deg); } }
+.rot-carte p { font-size: 1.2rem; font-weight: 900; margin: 0.3rem 0 0.4rem; }
+.rot-carte small { display: block; color: var(--doux); font-size: 0.8rem; margin-bottom: 0.9rem; }
+#rot-continuer {
+  border: 1px solid var(--bord); background: rgba(255, 255, 255, 0.07);
+  color: var(--texte); border-radius: 10px; padding: 0.55rem 0.9rem;
+  font-size: 0.78rem; font-weight: 700;
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .carte { max-width: 46rem; padding: 0.7rem 0.9rem; }
+  .logo { width: 3.2rem; height: 3.2rem; }
+  .baseline { font-size: 0.72rem; margin: 0.45rem 0 0.6rem; }
+  .btn-principal { padding: 0.6rem; font-size: 0.88rem; }
+  .campagne { gap: 0.35rem; margin-bottom: 0.55rem; }
+  .mission { padding: 0.4rem 0.45rem; }
+  .mission b { font-size: 0.74rem; }
+  .cartounite { width: 3.5rem; }
+}

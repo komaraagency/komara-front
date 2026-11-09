@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Komara Front — Stratégie Guinée</title>
+<meta name="description" content="Komara Front : jeu de stratégie militaire en temps réel. Déploie ton bataillon, tiens la ligne et défends la Guinée. Solo, hors ligne, en français.">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Komara Front">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/favicon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+
+<div id="tricolore" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<!-- ============================ ACCUEIL ============================ -->
+<section id="accueil" class="ecran actif">
+  <div class="carte">
+    <div class="entete-accueil">
+      <img class="logo" src="assets/logo-256.png" alt="Komara Agency" width="74" height="74">
+      <div>
+        <p class="sur-titre">komara Agency <span class="drap-gn" role="img" aria-label="Guinée"></span></p>
+        <h1>Komara<br><span>Front</span></h1>
+      </div>
+    </div>
+    <p class="baseline">Des forces hostiles avancent sur nos territoires. Prends le commandement, déploie ton bataillon et tiens la ligne.</p>
+
+    <div class="campagne" id="liste-missions"></div>
+
+    <button id="btn-jouer" class="btn-principal">Entrer en campagne</button>
+    <p class="astuce">Touche une carte pour déployer une unité. Elle avance et combat seule. Détruis le QG adverse avant que le tien ne tombe.</p>
+  </div>
+</section>
+
+<!-- ============================== JEU ============================== -->
+<section id="jeu" class="ecran">
+  <canvas id="scene"></canvas>
+
+  <!-- bandeau haut -->
+  <header id="haut">
+    <div class="bloc-base">
+      <span class="qui">Ton QG</span>
+      <div class="pv"><i id="pv-joueur"></i></div>
+    </div>
+    <div class="centre-haut">
+      <p class="mission-nom" id="mission-nom">Fouta</p>
+      <p class="objectif-mini" id="objectif-mini">Détruis le QG adverse</p>
+    </div>
+    <div class="bloc-base droite">
+      <span class="qui">Adversaire</span>
+      <div class="pv ennemi"><i id="pv-ennemi"></i></div>
+    </div>
+  </header>
+
+  <div id="credits">
+    <span class="symbole">⚡</span>
+    <b id="valeur-credits">120</b>
+    <div class="jauge-credits"><i id="bar-credits"></i></div>
+  </div>
+
+  <div class="boutons-haut">
+    <button id="btn-son" class="btn-rond" aria-label="Son">🔊</button>
+    <button id="btn-pause" class="btn-rond" aria-label="Pause">⏸</button>
+  </div>
+
+  <!-- message central -->
+  <div id="annonce" class="cache"></div>
+
+  <!-- cartes d'unites -->
+  <footer id="dock">
+    <div class="cartes" id="cartes"></div>
+  </footer>
+
+  <div id="voile" class="voile cache">
+    <div class="panneau">
+      <p class="etiquette" id="fin-etiquette">Mission</p>
+      <h2 id="fin-titre">Victoire</h2>
+      <p id="fin-texte">Le QG adverse est tombé.</p>
+      <div id="fin-stats" class="fin-stats"></div>
+      <button id="btn-rejouer" class="btn-principal">Rejouer</button>
+      <button id="btn-suivant" class="btn-secondaire">Mission suivante</button>
+      <button id="btn-menu" class="btn-secondaire">Campagne</button>
+    </div>
+  </div>
+
+  <div id="voile-pause" class="voile cache">
+    <div class="panneau">
+      <h2>Pause</h2>
+      <button id="reprendre" class="btn-principal">Reprendre</button>
+      <button id="quitter" class="btn-secondaire">Quitter la mission</button>
+    </div>
+  </div>
+</section>
+
+<div id="rotation">
+  <div class="rot-carte">
+    <div class="rot-ico">📱</div>
+    <p>Tourne ton téléphone</p>
+    <small>Komara Front se joue à l'horizontale.</small>
+    <button id="rot-continuer">Jouer quand même</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener("error", function (e) {
+  var d = document.getElementById("veille");
+  if (!d) {
+    d = document.createElement("div");
+    d.id = "veille";
+    d.style.cssText = "position:fixed;left:0;right:0;top:0;z-index:99999;background:#b00020;color:#fff;font:12px monospace;padding:6px;white-space:pre-wrap";
+    document.body.appendChild(d);
+  }
+  d.textContent = "ERREUR: " + e.message + " | " + (e.filename || "").split("/").pop() + ":" + e.lineno;
+}, true);
+</script>
+<script src="front.js?v=1"></script>
+</body>
+</html>

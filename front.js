@@ -808,6 +808,8 @@
     barCredit: document.getElementById("bar-credits"),
     pvJ: document.getElementById("pv-joueur"),
     pvE: document.getElementById("pv-ennemi"),
+    tpvJ: document.getElementById("txt-pv-joueur"),
+    tpvE: document.getElementById("txt-pv-ennemi"),
     nom: document.getElementById("mission-nom"),
     cartes: document.getElementById("cartes"),
     annonce: document.getElementById("annonce"),
@@ -845,6 +847,8 @@
     el.barCredit.style.width = (etat.credit / etat.creditMax) * 100 + "%";
     el.pvJ.style.width = (etat.pvJoueurMax ? (etat.pvJoueur / etat.pvJoueurMax) * 100 : 0) + "%";
     el.pvE.style.width = (etat.pvEnnemiMax ? (etat.pvEnnemi / etat.pvEnnemiMax) * 100 : 0) + "%";
+    if (el.tpvJ) el.tpvJ.textContent = Math.max(0, Math.round(etat.pvJoueur));
+    if (el.tpvE) el.tpvE.textContent = Math.max(0, Math.round(etat.pvEnnemi));
 
     ORDRE.forEach((cle) => {
       const b = cartesEls[cle];

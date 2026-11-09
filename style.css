@@ -298,3 +298,5 @@ body {
   .mission b { font-size: 0.74rem; }
   .cartounite { width: 3.5rem; }
 }
+
+.pv-num { color: #fff; font-size: 0.6rem; font-variant-numeric: tabular-nums; margin-left: 0.25rem; }

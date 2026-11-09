@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
   <!-- bandeau haut -->
   <header id="haut">
     <div class="bloc-base">
-      <span class="qui">Ton QG</span>
+      <span class="qui">Ton QG <b class="pv-num" id="txt-pv-joueur">1100</b></span>
       <div class="pv"><i id="pv-joueur"></i></div>
     </div>
     <div class="centre-haut">
@@ -52,7 +52,7 @@
       <p class="objectif-mini" id="objectif-mini">Détruis le QG adverse</p>
     </div>
     <div class="bloc-base droite">
-      <span class="qui">Adversaire</span>
+      <span class="qui">Adversaire <b class="pv-num" id="txt-pv-ennemi">850</b></span>
       <div class="pv ennemi"><i id="pv-ennemi"></i></div>
     </div>
   </header>
@@ -118,6 +118,6 @@ window.addEventListener("error", function (e) {
   d.textContent = "ERREUR: " + e.message + " | " + (e.filename || "").split("/").pop() + ":" + e.lineno;
 }, true);
 </script>
-<script src="front.js?v=3"></script>
+<script src="front.js?v=4"></script>
 </body>
 </html>

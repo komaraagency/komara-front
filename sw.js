@@ -1,5 +1,5 @@
 /* Komara Front — service worker */
-const CACHE = "komara-front-v3";
+const CACHE = "komara-front-v4";
 const ESSENTIELS = [
   "./", "index.html", "style.css?v=1", "front.js?v=1", "manifest.json",
   "icon-192.png", "icon-512.png", "assets/logo-256.png", "assets/favicon-64.png"

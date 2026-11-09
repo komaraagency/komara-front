@@ -809,6 +809,7 @@
     pvJ: document.getElementById("pv-joueur"),
     pvE: document.getElementById("pv-ennemi"),
     tpvJ: document.getElementById("txt-pv-joueur"),
+    elim: document.getElementById("txt-elim"),
     tpvE: document.getElementById("txt-pv-ennemi"),
     nom: document.getElementById("mission-nom"),
     cartes: document.getElementById("cartes"),

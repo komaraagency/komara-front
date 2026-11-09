@@ -44,7 +44,7 @@
   <!-- bandeau haut -->
   <header id="haut">
     <div class="bloc-base">
-      <span class="qui">Ton QG <b class="pv-num" id="txt-pv-joueur">1100</b></span>
+      <span class="qui">Ton QG <b class="pv-num" id="txt-pv-joueur">1100</b> <em class="elim" id="txt-elim">0 éliminé</em></span>
       <div class="pv"><i id="pv-joueur"></i></div>
     </div>
     <div class="centre-haut">
@@ -118,6 +118,6 @@ window.addEventListener("error", function (e) {
   d.textContent = "ERREUR: " + e.message + " | " + (e.filename || "").split("/").pop() + ":" + e.lineno;
 }, true);
 </script>
-<script src="front.js?v=4"></script>
+<script src="front.js?v=5"></script>
 </body>
 </html>

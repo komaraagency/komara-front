@@ -300,3 +300,5 @@ body {
 }
 
 .pv-num { color: #fff; font-size: 0.6rem; font-variant-numeric: tabular-nums; margin-left: 0.25rem; }
+
+.elim { font-style: normal; font-size: 0.55rem; color: #9fe6a0; margin-left: 0.35rem; letter-spacing: 0.04em; }
